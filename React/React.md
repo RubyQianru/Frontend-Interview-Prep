@@ -148,4 +148,129 @@ componengWillUnmount 组件被移除时调用，清楚事件监听，定时器
 
 # React 事件机制
 
+什么是合成事件？
+
+- 事件触发，事件冒泡，事件捕获，事件合成，派发。
+
+作用：
+
+- 底层磨平不同浏览器之间的差异，提供统一稳定与原生事件相同的接口
+- 把握主动权，中心化控制
+- 引入事件池，避免频繁创建销毁
+
+与原生dom区别：
+e.nativeEvent
+
+# dom事件流如何工作？
+
+1. 事件捕获
+2. 处于对应目标
+3. 事件冒泡
+
+React17 事件之后都把事件绑定在container上
+
+1. 事件绑定在container上
+2. react自身实现了冒泡机制，不能通过return false阻止冒泡
+3. react通过sytheticEvent完成事件合成
+
+# react常用组件
+
+1. Portal
+
+让子组件渲染在出了父组件之外的dom节点方式
+
+‘’‘js
+ReactDom.createPortal(child, container)
+’‘’
+
+- 提示框，弹窗
+
+2. Fragment
+
+包裹子列表，不产生额外dom节点
+
+3. Context
+
+跨层级组件数据传递
+
+# React Router 工作原理
+
+为什么需要前端路由？
+
+- 早期每次页面都要跳转，用户体验差
+- spa单页应用 seo不友好
+- 需要记住用户操作
+
+解决了什么问题？
+
+- 刷新页面，根据url对资源进行重定向
+- 不同url映射到不同内容
+- 拦截用户的刷新操作：感知url的变化
+
+### react-router-dom 组件
+
+- HashRouter / BrowserRouter 路由器
+- Route 路由匹配
+- Link 链接
+- NavLink 当前活动的链接
+- Switch 路由跳转
+- Redirect 路由重定向
+
+- 核心能力：跳转
+- 路由：定义路由和组件的映射关系
+- 导航：出发路由改变
+
+- BrowserRouter html5 history api 实现路由跳转。使用popState
+- HashRouter url的hash属性。使用hashChange
+
+# 数据流动
+
+React 组件通信：
+
+- 父 -》子：props
+- 子 -》父：回调函数，事件冒泡
+- 兄弟：通过父组件中转
+- 父 -》后代：context
+- 无关组件通信：redux
+
+# react hooks
+
+类组件函数组件的区别：
+
+- 类组件需要声明constructor，函数组件不需要。
+- 类组件需要手动绑定this 函数不需要
+- 类组件有生命周期钩子，函数没有
+- 类组件维护自己state，函数无状态
+- 类组件需要集成，函数不需要
+
+解决了什么问题？
+
+- 告别难以理解的class组件
+- 解决业务逻辑难以拆分
+- 使用状态逻辑复用，变得更简单
+- 设计理念更适合react
+
+钩子函数
+
+- useEffect
+- useMemos 缓存对应的值
+- useState
+- useEffectLayout
+- useCallback 缓存函数
+
+setState 使用队列机制，将需要更新的state合并后，放入队列中，更高效更新state。如果直接修改this.state，就不会被放入队列中，容易出现未知错误
+
+# React Fiber
+
+Fiber出现背景：
+
+- 老react stack reconciler同步递归过程，不可中断。响应度比较差。没有区别优先级
+
+### Fiber 是什么
+
+fiber是一个js对象
+
+### 更新机制
+
+- 初始化：fiberRoot，wip内存中构建wip fiber。第一次更新后
 
