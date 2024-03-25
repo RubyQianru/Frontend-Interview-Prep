@@ -271,6 +271,19 @@ Fiber出现背景：
 fiber是一个js对象
 
 ### 更新机制
+1. 初始化
+- 初始化：fiberRoot
+2. beginWork
+- wip内存中构建wip fiber。第一次更新后
+- current：视图层渲染的书current fiber树
+3. 深度调和子节点 渲染视图
+alernate树，完成整个子节点遍历，包括fiber创建，wip树作为最新树，完成初始化流程
 
-- 初始化：fiberRoot，wip内存中构建wip fiber。第一次更新后
+# React 渲染流程
 
+jsx描绘洁面
+jsx使用babel转换为vdom
+vdom fiber 在进行渲染
+vdom转换fiber reconcile
+转换过程中创建dom
+commit到dom
