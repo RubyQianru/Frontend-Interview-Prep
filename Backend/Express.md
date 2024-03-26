@@ -16,7 +16,7 @@ app.listen(3000, 'localhost')
 
 # Express 框架
 
-‘’‘js
+‘’‘
 // 导入 express
 const express = require('express')
 const app = express()
@@ -35,3 +35,79 @@ app.listen(3000, () => {
 
 app.METHOD(PATH, HANDLER)
 
+### GET
+
+'''js
+app.get('/', (req, res) => {
+    res.send()
+})
+'''
+
+### POST
+
+'''js
+app.post('/', (req, res) => {
+    res.send()
+
+})
+'''
+
+### PUT
+
+'''js
+app.put('/', (req, res) => {
+    res.send()
+    
+})
+'''
+
+### DELETE
+
+'''js
+app.delete('/', (req, res) => {
+    res.send()
+    
+})
+'''
+
+# nodemon
+
+热部署工具
+
+nodemon app.js
+
+# 路由模块化
+
+‘’‘
+// 导入 express
+const express = require('express')
+
+// 创建router对象
+var router = express.Router()
+
+router.get('/',(req, res) => {
+    res.send('Hello World')
+})
+
+router.post('/', (req, res) => {
+    res.send()
+})
+
+module.exports = router
+
+'''
+
+‘’‘
+// 导入 express
+const express = require('express')
+const router = require('./router_demo)
+const app = express()
+
+//为所有路由加上前缀
+app.use('/user',router)
+
+app.listen(3000, () => {
+    console.log('http://localhost:3000')
+})
+
+’‘’
